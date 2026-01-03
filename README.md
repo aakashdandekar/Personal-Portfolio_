@@ -1,4 +1,4 @@
 # Personal-Portfolio_
 
-Frontend: HTML, CSS, JS\n
-Backemd: Django, SQLite3
+Frontend: HTML, CSS, JS.
+Backend: Django, SQLite3
