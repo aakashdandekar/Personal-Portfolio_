@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post | Aakash Dandekar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1f2933;
+            --card: #f5f7fa;
+            --accent: #2563eb;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --text: #e5e7eb;
+            --card: #1e293b;
+            --accent: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .form-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 14px;
+        }
+
+        label {
+            display: block;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: transparent;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Create New Post</h1>
+        <button onclick="toggleTheme()">Mode</button>
+    </header>
+    <main>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button type="submit">Publish</button>
+                <button onclick="clearForm()">Clear</button>
+            </div>
+        </form>
+    </main>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+
+        /*function publishPost() {
+            const title = document.getElementById("title").value.trim();
+            const content = document.getElementById("content").value.trim();
+
+            if (!title || !content) {
+                alert("All fields are mandatory.");
+                return;
+            }
+
+            const payload = {
+                "title": title, 
+                "content": content
+            };
+
+            const response = await fetch("/create/", {
+                method = "POST",
+                header = {
+                    "content-type": "application/json",
+                    "X-CSRFToken": getCSRFToken()
+                },
+                body = JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                window.location.href="/"
+            } else {
+                alert(data.error || "Something went wrong!");
+            }
+        }*/
+
+        function clearForm() {
+            document.getElementById("title").value = "";
+            document.getElementById("summary").value = "";
+            document.getElementById("content").value = "";
+        }
+    </script>
+</body>
+</html>
